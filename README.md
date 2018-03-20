@@ -5,7 +5,7 @@ Uses the Web Speech API built into most modern browsers to vocalize a text strin
 - https://github.com/stahlmanDesign/rc-speak-text
 
 ## Installation
-- `npm install --save sd-react-loading`
+- `npm install --save rc-speak-text`
 
 ## Usage
 ```import SpeakText from 'rc-speak-text'```
