@@ -1,6 +1,6 @@
 {
   "name": "rc-speak-text",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "React component that speaks a text string.",
   "main": "build/index.js",
   "peerDependencies": {
