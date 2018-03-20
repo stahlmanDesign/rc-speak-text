@@ -21,6 +21,7 @@ Will speak “Hello world” in English (default language)
 ### Customizing with props	
 ```jsx
 <SpeakText
+  play
   pause={ null /* NOTE a button could pause this.state.pause */ }
   resume={ null /* NOTE a button could resume this.state.resume */ }
   text='Bonjour tout le monde'
