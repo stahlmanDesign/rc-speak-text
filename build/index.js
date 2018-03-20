@@ -524,6 +524,8 @@ var SpeakText = function (_React$Component) {
 
       var _props = this.props,
           play = _props.play,
+          pause = _props.pause,
+          resume = _props.resume,
           onStart = _props.onStart,
           onError = _props.onError,
           onPause = _props.onPause,
