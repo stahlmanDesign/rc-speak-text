@@ -32,11 +32,12 @@ class SpeakText extends React.Component {
     return false
   }
   componentDidMount () {
+    const { play, pause, resume, onStart, onError, onPause, onResume, onEnd } = this.props
     const events = [
-      { name: 'start', action: this.props.onStart },
-      { name: 'error', action: this.props.onError },
-      { name: 'pause', action: this.props.onPause },
-      { name: 'resume', action: this.props.onResume }
+      { name: 'start', action: onStart },
+      { name: 'error', action: onError },
+      { name: 'pause', action: onPause },
+      { name: 'resume', action: onResume }
     ]
 
     events.forEach(e => {
@@ -45,23 +46,25 @@ class SpeakText extends React.Component {
 
     this.speech.addEventListener('end', () => {
       this.setState({ started: false })
-      this.props.onEnd()
+      if (onEnd) onEnd()
     })
 
-    if (this.props.play) {
-      this.speak()
-    }
+    if (play) this.speak()
+
   }
   init () {
     const defaults = {
       text: '',
+      lang: 'en-US',
       volume: 1,
       rate: 1,
-      pitch: 1,
-      lang: 'en-US'
+      pitch: 1
     }
 
-    const options = Object.assign({}, defaults, this.props)
+    // NOTE optional props
+    // const { text, lang, volume, rate, pitch } = this.props
+
+    const options = Object.assign({}, defaults, this.props) // merge defaults with props if provided
 
     let speech = new SpeechSynthesisUtterance()
 
@@ -74,7 +77,7 @@ class SpeakText extends React.Component {
     return speech
   }
   render () {
-    return null
+    return null // nothing to render, only using speech events
   }
   speak () {
     window.speechSynthesis.speak(this.speech)

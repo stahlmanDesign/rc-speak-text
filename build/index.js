@@ -522,7 +522,15 @@ var SpeakText = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var events = [{ name: 'start', action: this.props.onStart }, { name: 'error', action: this.props.onError }, { name: 'pause', action: this.props.onPause }, { name: 'resume', action: this.props.onResume }];
+      var _props = this.props,
+          play = _props.play,
+          onStart = _props.onStart,
+          onError = _props.onError,
+          onPause = _props.onPause,
+          onResume = _props.onResume,
+          onEnd = _props.onEnd;
+
+      var events = [{ name: 'start', action: onStart }, { name: 'error', action: onError }, { name: 'pause', action: onPause }, { name: 'resume', action: onResume }];
 
       events.forEach(function (e) {
         _this2.speech.addEventListener(e.name, e.action);
@@ -530,25 +538,25 @@ var SpeakText = function (_React$Component) {
 
       this.speech.addEventListener('end', function () {
         _this2.setState({ started: false });
-        _this2.props.onEnd();
+        if (onEnd) onEnd();
       });
 
-      if (this.props.play) {
-        this.speak();
-      }
+      if (play) this.speak();
     }
   }, {
     key: 'init',
     value: function init() {
       var defaults = {
         text: '',
+        lang: 'en-US',
         volume: 1,
         rate: 1,
-        pitch: 1,
-        lang: 'en-US'
-      };
+        pitch: 1
 
-      var options = Object.assign({}, defaults, this.props);
+        // NOTE optional props
+        // const { text, lang, volume, rate, pitch } = this.props
+
+      };var options = Object.assign({}, defaults, this.props); // merge defaults with props if provided
 
       var speech = new SpeechSynthesisUtterance();
 
@@ -563,7 +571,7 @@ var SpeakText = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return null;
+      return null; // nothing to render, only using speech events
     }
   }, {
     key: 'speak',

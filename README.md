@@ -12,21 +12,29 @@ Uses the Web Speech API built into most modern browsers to vocalize a text strin
 ### Basic
 ```jsx
 <SpeakText
-  text='Bonjour tout le monde'
-  lang='fr-CA'
+  play
+  text='Hello world'
 />
 ```
-Will speak « Bonjour tout le monde » in French
-
+Will speak “Hello world” in English (default language)
 
 ### Customizing with props	
 ```jsx
 <SpeakText
-  text='Hello world'
-  lang='en-US'
+  pause={ null /* NOTE a button could pause this.state.pause */ }
+  resume={ null /* NOTE a button could resume this.state.resume */ }
+  text='Bonjour tout le monde'
+  lang='fr-CA'
+  volume={ 1.5 }
+  rate={ 0.5 }
+  pitch={ .75 }
+  onPause={ ()=>{ console.log('speech paused')} }
+  onResume={ ()=>{ console.log('speech resumed')} }
+  onStart={ ()=>{ console.log('speech started')} }
+  onEnd={ ()=>{ console.log('speech ended')} }
 />
 ```
-Will speak “Hello world” in English
+Will speak « Bonjour tout le monde » in French with different volume, rate and pitch.
 
 ## Source
 
